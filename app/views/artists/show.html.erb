@@ -1,20 +1,33 @@
-<div class="artist">
-  <img class="avatar-large avatar-bordered" src="<%= @artist.image_url %>">
-  <div class="artist-name">
-    <%= @artist.name %>
+<div class="artist-header">
+  <div class="avatar-xxl">
+    <%= image_tag @artist.image_url, class: "avatar-xxl" %>
+  </div>
+  <div class="artist-menu">
+    <h1><%= @artist.name %></h1>
+    <%= link_to "Artists", root_path  %> |
+    <%= link_to "Add Album", new_artist_album_path(@artist) %>
   </div>
 </div>
 
-<%= link_to 'Add Album', new_artist_album_path(@artist) %>
 
-
-<h1>Albums</h1>
-<% if @artist.albums.any? %>
-  <ul>
-    <% @artist.albums.each do |album| %>
-    <li><%= album.title %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>This artist doesn't have any albums yet!</p>
-<% end %>
+<div id="albums">
+  <h2>Releases</h2>
+  <% if @artist.albums.any? %>
+    <div class="container-fluid">
+      <div class="row">
+        <% @artist.albums.each do |album| %>
+          <div class="col-xs-12 col-sm-4">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= album.image_url %>');">
+              <div class="card-description">
+                <h2><%= album.title %></h2>
+              </div>
+              <%= link_to "+", album_path(album), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <p>This artist has no releases yet!</p>
+  <% end %>
+</div>

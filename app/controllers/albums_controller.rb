@@ -1,12 +1,11 @@
 class AlbumsController < ApplicationController
-  before_action :set_artist
+  before_action :set_artist, except: :destroy
 
   def new
     @album = Album.new
   end
 
   def create
-    byebug
     # STRONG PARAMS
     @album = Album.new(album_params)
     @album.artist = @artist
@@ -16,6 +15,13 @@ class AlbumsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @album = Album.find(params[:id])
+    @album.destroy
+
+    redirect_to @album.artist
   end
 
   private

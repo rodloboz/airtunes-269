@@ -1,9 +1,8 @@
-<h1>Add Album to <%= @artist.name %></h1>
+<h1>Add Album</h1>
 
-<%= simple_form_for([@artist, @album]) do |f| %>
+<%= simple_form_for [@artist, @album] do |f| %>
   <%= f.input :title %>
   <%= f.input :image_url %>
 
-  <%= f.button :submit, class: "btn btn-default btn-primary" %>
-
-<% end %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end  %>
