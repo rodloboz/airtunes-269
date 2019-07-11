@@ -5,7 +5,11 @@
   <div class="artist-menu">
     <h1><%= @artist.name %></h1>
     <%= link_to "Artists", root_path  %> |
-    <%= link_to "Add Album", new_artist_album_path(@artist) %>
+    <%= link_to "Add Album", new_artist_album_path(@artist) %> |
+    <%= link_to "Add Tags", new_artist_tag_path(@artist) %>
+    <div class="artist-tags">
+      <%= render @artist.tags %>
+    </div>
   </div>
 </div>
 
@@ -16,14 +20,7 @@
     <div class="container-fluid">
       <div class="row">
         <% @artist.albums.each do |album| %>
-          <div class="col-xs-12 col-sm-4">
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= album.image_url %>');">
-              <div class="card-description">
-                <h2><%= album.title %></h2>
-              </div>
-              <%= link_to "+", album_path(album), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
-            </div>
-          </div>
+          <%= render album %>
         <% end %>
       </div>
     </div>

@@ -10,4 +10,14 @@ artists = JSON.parse(response)
 Artist.create!(artists)
 puts "Created #{Artist.count} artists."
 
+tags = [
+  "rock",
+  "jazz",
+  "70s"
+]
+
+tags.each do |tag|
+  Tag.create!(name: tag)
+end
+
 puts "Finished!"

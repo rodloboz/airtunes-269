@@ -1,14 +1,25 @@
 .artist-tags {
   display: flex;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .tag {
+  position: relative;
   background: $blue;
-  padding: 5px 15px;
+  padding: 5px 20px;
   border-radius: 10px;
   color: white;
   font-weight: lightest;
   font-size: 10px;
   margin-right: 10px;
+
+  &:hover .tag-delete {
+    opacity: 1;
+  }
+  .tag-delete {
+    position: absolute;
+    right: 8px;
+    top: 2px;
+    opacity: 0;
+  }
 }

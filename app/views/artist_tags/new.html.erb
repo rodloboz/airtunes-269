@@ -1,0 +1,5 @@
+<%= simple_form_for @artist_tag, path: artist_tags_path(@artist), method: :post do |f| %>
+  <%= f.association :tag %>
+
+  <%= f.button :submit, "Add", class: "btn btn-primary" %>
+<% end %>
